@@ -1,0 +1,4 @@
+[["ship", "vận chuyển"],["shop", "cửa hàng"],["m", "mình"],["mik","mình"],["ko","không"],["k","không"],["kh","không"],["khong","không"],["kg","không"],["khg","không"],["tl","trả lời"],
+["rep","trả lời"],["r","rồi"],["fb","facebook"],["face","faceook"],["thanks","cảm ơn"],["thank","cảm ơn"],["tks","cảm ơn"],["tk","cảm ơn"],["ok","tốt"],["oki","tốt"],["okie","tốt"],["sp","sản phẩm"],
+["dc","được"],["vs","với"],["đt","điện thoại"],["thjk","thích"],["thik","thích"],["qá","quá"],["trể","trễ"],["bgjo","bao giờ"],["h","giờ"],["qa","quá"],["dep","đẹp"],["xau","xấu"],["ib","nhắn tin"],
+["cute","dễ thương"],["sz","size"],["good","tốt"],["god","tốt"],["bt","bình thường"]]

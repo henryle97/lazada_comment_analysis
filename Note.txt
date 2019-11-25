@@ -1,0 +1,12 @@
+Step 1: Preprocessing
+- Load data : Coi mỗi bình luận là 1 feature
+- Tokenize : Tách từ (dâu ngắt câu --> <punc> | chữ số --> <num>) -> list N comment
+Step 2: Feature extracting (word embedding):
+- Make embedding --> embed_size, word_map, embedding_mat
++ Choose pretrained embedding : word2vecVN https://github.com/sonvx/word2vecVN
+- text_to_sequences: dựa vào word_map (embedding) --> features
+
+
+Step 4: Choose model training: SARNN (em
+
+Step 5: Improve
