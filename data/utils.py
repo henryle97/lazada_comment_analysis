@@ -20,10 +20,12 @@ def txt2csv(txt_path, csv_path):
 
 def test_csv(csv_path):
     df = pd.read_csv(csv_path, sep=",", usecols=range(2))
-    print(df["comment"])
+    print(df["comment"][:20])
 
 
 if __name__ == "__main__":
-    csv_path = "train.csv"
+    csv_path = "/home/hisiter/IT/4_year_1/Intro_ML/sentiment_classification/data/data_van.csv"
+    csv__res_path = "/home/hisiter/IT/4_year_1/Intro_ML/sentiment_classification/data/data_van_clean.csv"
     # txt2csv("train.txt", "train.csv")
-    test_csv(csv_path)
+    # test_csv(csv_path)
+    clean_csv(csv_path, csv__res_path)

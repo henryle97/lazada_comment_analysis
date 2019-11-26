@@ -1,3 +1,5 @@
+from idlelib import replace
+
 from pyvi import ViTokenizer
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -5,7 +7,8 @@ import pandas as pd
 import time
 import re
 import unicodedata
-
+from pyvi import ViTokenizer
+import json
 
 DEFAULT_MAX_FEATURES = 12000
 DEFAULT_MAX_LENGTH = 100
@@ -14,24 +17,22 @@ DEFAULT_MAX_LENGTH = 100
 # PREPROCESSING
 def preprocessing_comment(text):
     text = text.lower()
-    print(text)
     text = unicodedata.normalize('NFC', text)  #   Unicode normalization form
     text = re.sub("[^a-zA-ZàáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ]", " ", text)
-    print(text)
+
+    with open('data/replace_dict.json', 'r') as JSON:
+        replace_dict = json.load(JSON)
+    text = " ".join(replace_dict[token] if token in replace_dict else token for token in text.split(" "))
+    text = ViTokenizer.tokenize(text)
     return text
 
 
 def processing_data(csv_path, csv_result_path="train_processed.csv"):
     t1 = time.time()
     print("Start processing data ...")
-    df = pd.read_csv(csv_path, sep=',', usecols=range(2), )
-    print(df.head(20))
-    print(len(df))
+    df = pd.read_csv(csv_path, sep=",", usecols=range(2), names=["stars", "comment"])
     df_drop = df.drop_duplicates(keep='first', inplace=False)
-    print(len(df))
-    for i, comment in enumerate(df_drop["comment"][:500]):
-        processed_comment = preprocessing_comment(comment)
-        df_drop.loc[i,"comment"] = processed_comment
+    df_drop["comment"] = df_drop["comment"].map(preprocessing_comment)
 
     df_drop.to_csv(csv_result_path, sep=",", index=False)
     print(f"Done processing data in {time.time()-t1}s")
@@ -51,7 +52,7 @@ def create_feature_tfidf():
 
 
 if __name__ == "__main__":
-    processing_data("data/data_van.csv")
+    processing_data("data/data_van.csv", "data/data_van_processed.csv")
     # preprocessing_comment(
     #     '"em nhận được hàng rồi rất đẹp 😍😍😍')
 
