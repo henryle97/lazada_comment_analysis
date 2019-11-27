@@ -32,12 +32,8 @@ def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen
     if use_gpu:
         rnn_type = CuDNNLSTM
 
-    if use_fasttext:
-        input = Input(shape=(maxlen, embed_size))
-        x = input
-    else:
-        input = Input(shape=(maxlen, ))
-        x = Embedding(input_dim=max_features, output_dim=embed_size, weights=[embeddingMatrix], trainable=trainable)
+    input = Input(shape=(maxlen, ))
+    x = Embedding(input_dim=max_features, output_dim=embed_size, weights=[embeddingMatrix], trainable=trainable)(input)
 
     if use_additive_emb:
         x = AdditiveLayer()(x)
@@ -56,8 +52,8 @@ def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen
 
     x = Dense(64, activation='relu')(x)
     x = Dropout(0.5)(x)
-    x = Dense(1, activation='sigmoid')(x)
+    x = Dense(5, activation='sigmoid')(x)
 
     model = Model(inputs=input, outputs=x)
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy', f1])
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', f1])
     return model

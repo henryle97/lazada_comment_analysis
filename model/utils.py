@@ -1,3 +1,4 @@
+from tensorflow.keras import backend as K
 def f1(y_true, y_pred):
     def recall(y_true, y_pred):
         """Recall metric.

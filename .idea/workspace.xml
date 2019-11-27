@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="" />
+    <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_hoang_processed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_hoang_processed.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_van_processed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_van_processed.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/utils.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.extract_feature">
+  <component name="RunManager" selected="Python.main">
     <configuration name="extract_feature" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="sentiment_classification" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -176,9 +185,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.extract_feature" />
         <item itemvalue="Python.utils" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.processing_data" />
         <item itemvalue="Python.feature_extract_video" />
       </list>
@@ -203,7 +212,9 @@
       <workItem from="1574156339719" duration="16000" />
       <workItem from="1574212442378" duration="3736000" />
       <workItem from="1574347426360" duration="3230000" />
-      <workItem from="1574643408338" duration="6524000" />
+      <workItem from="1574643408338" duration="6949000" />
+      <workItem from="1574732710181" duration="5277000" />
+      <workItem from="1574817693459" duration="4315000" />
     </task>
     <servers />
   </component>
@@ -225,9 +236,9 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sentiment_classification$processing_data.coverage" NAME="processing_data Coverage Results" MODIFIED="1571964222071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils_data" />
-    <SUITE FILE_PATH="coverage/sentiment_classification$utils.coverage" NAME="utils Coverage Results" MODIFIED="1574645510526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/sentiment_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1573897638032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sentiment_classification$utils.coverage" NAME="utils Coverage Results" MODIFIED="1574733611739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/sentiment_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1574822010883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sentiment_classification$feature_extract_video.coverage" NAME="feature_extract_video Coverage Results" MODIFIED="1571795490967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../3nd_year_semester2/VCCorp_Intern/Computer_vision/categorize_video" />
-    <SUITE FILE_PATH="coverage/sentiment_classification$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574649662753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sentiment_classification$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574820090494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
