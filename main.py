@@ -1,5 +1,7 @@
-from model import model
-from model.model import SARNN_Keras
+import keras_self_attention
+
+from model_util import model
+from model_util.model import SARNN_Keras
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from pyvi import ViTokenizer
 import numpy as np
@@ -9,13 +11,16 @@ import pickle
 from extract_feature import make_embedding, texts_to_sequences, tokenize
 from data.utils import read_file
 import os
-from tensorflow.keras.utils import to_categorical
+from keras.utils import to_categorical
+from keras.models import load_model
+
+import model_util
 
 class SENTIMENT_CLASSIFY:
     def __init__(self):
         self.features_path = "data/features_tfidf.npy"
         self.labels_path = "data/labels_tfidf.npy"
-        self.model_path = "model/model.hdf5"
+        self.model_path = "models/SARNN-version/models.hdf5"
 
     def create_feature(self, data_path, embedding_path, max_features):
         '''
@@ -25,25 +30,31 @@ class SENTIMENT_CLASSIFY:
         '''
         train_data = read_file(data_path)
         train_tokenized_texts = tokenize(train_data['comment'])
+
         labels = train_data['stars'].tolist()
-        print(labels[:10])
-        labels = to_categorical(labels)
-        labels = labels[:,labels.any(0)]
-        print(labels.shape)
+        labels = to_categorical(labels)  #return encode cho 0->numclass
+        labels = labels[:,labels.any(0)] # bỏ đi các cột ko có giá trị khác không nào
+
+        test_data = read_file("data/train_500.csv")
+        test_tokenized_texts = tokenize(test_data['comment'])
+        labels_test = test_data['stars'].tolist()
+        labels_test = to_categorical(labels_test)  # return encode cho 0->numclass
+        labels_test = labels_test[:, labels_test.any(0)]  # bỏ đi các cột ko có giá trị khác không nào
 
         train_tokenized_texts, val_tokenized_texts, labels_train, labels_val = train_test_split(
-            train_tokenized_texts, labels, test_size=0.05, random_state=1997
+            train_tokenized_texts, labels, test_size=0.1, random_state=1997
         )
 
         # Cần tạo embedding size cho cả train và test
         embed_size, word_map, embedding_mat = make_embedding(
-            list(train_tokenized_texts) + list(val_tokenized_texts),
+            list(train_tokenized_texts) + list(val_tokenized_texts) + list(test_tokenized_texts),
             embedding_path,
             max_features
         )
         texts_id_train = texts_to_sequences(train_tokenized_texts, word_map)
         texts_id_val = texts_to_sequences(val_tokenized_texts, word_map)
-        return embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val
+        texts_id_test = texts_to_sequences(test_tokenized_texts, word_map)
+        return embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val, texts_id_test, labels_test
 
     def training_ML(self):
         X_train = np.load(self.features_path, allow_pickle=True)
@@ -86,7 +97,7 @@ class SENTIMENT_CLASSIFY:
         )
         early = EarlyStopping(monitor='val_f1', mode='max', patience=5)
         callbacks_list = [checkpoint, early]
-        batch_size = 16
+        batch_size = 50
         epochs = 100
 
         model = SARNN_Keras(
@@ -106,20 +117,22 @@ class SENTIMENT_CLASSIFY:
         )
 
     def predict(self, X_test, y_test):
-        # load model
-        model = pickle.load(open(self.model_path, 'rb'))
+        # load model_util
+        model = load_model(self.model_path, custom_objects={'SeqSelfAttention' : keras_self_attention.SeqSelfAttention,
+                                                            'SeqWeightedAttention':keras_self_attention.SeqWeightedAttention,'f1': model_util.utils.f1})
 
         # predict
-        result = model.score(X_test, y_test)
-
+        result = model.test_on_batch(X_test, y_test)
+        print(result)
 
 if __name__ == "__main__":
     sa = SENTIMENT_CLASSIFY()
-    embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val = sa.create_feature(
-        data_path="data/data_hoang_processed.csv", embedding_path="data/baomoi.model.bin", max_features=120000
+    embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val, texts_id_test, labels_test = sa.create_feature(
+        data_path="data/data_hoang_processed.csv", embedding_path="/home/hisiter/IT/4_year_1/Intro_ML/sentiment_classification/data/baomoi.model.bin", max_features=120000
     )
     print(len(list(texts_id_train)))
     print(texts_id_train.shape)
     print(labels_train.shape)
     sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
                        trainable=True, use_additive_emb=False)
+    sa.predict(texts_id_test, labels_test)

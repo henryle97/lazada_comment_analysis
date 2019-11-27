@@ -148,7 +148,7 @@ def texts_to_sequences(texts_splited, word_map, max_len=DEFAULT_MAX_LENGTH):
 #     np.save("labels_tfidf.npy", labels)
 #
 #
-# if __name__ == "__main__":
-#     processing_data("data/data_hoang.csv", "data/data_hoang_processed.csv")
-#     # preprocessing_comment(
-#     #     '"em nhận được hàng rồi rất đẹp 😍😍😍')
+if __name__ == "__main__":
+    processing_data("data/train.csv", "data/train_500.csv")
+    # preprocessing_comment(
+    #     '"em nhận được hàng rồi rất đẹp 😍😍😍')
