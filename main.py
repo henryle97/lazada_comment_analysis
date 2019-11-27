@@ -122,7 +122,7 @@ class SENTIMENT_CLASSIFY:
                                                             'SeqWeightedAttention':keras_self_attention.SeqWeightedAttention,'f1': model_util.utils.f1})
 
         # predict
-        result = model.test_on_batch(X_test, y_test)
+        result = model.predict(X_test)
         print(result)
 
 if __name__ == "__main__":
@@ -133,6 +133,6 @@ if __name__ == "__main__":
     print(len(list(texts_id_train)))
     print(texts_id_train.shape)
     print(labels_train.shape)
-    sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
-                       trainable=True, use_additive_emb=False)
+    # sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
+    #                    trainable=True, use_additive_emb=False)
     sa.predict(texts_id_test, labels_test)
