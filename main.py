@@ -19,8 +19,8 @@ class SENTIMENT_CLASSIFY:
         self.model_path = "models.hdf5"
         self.batch_size = 128
         self.epochs = 100
-        self.data_train_path = "data/data_all_processed_sorted.csv"
-        self.data_test_path = "data/test_287.csv"
+        self.data_train_path = "data/data_train_clean.csv"
+        self.data_test_path = "data/test_287_processed.csv"
         self.embedding_path = "embedding/baomoi.model.bin"
         self.word_map_path = "embedding/wordmap.pkl"
         self.embedding_matrix_path = "embedding/embeding_matrix.pkl"
@@ -105,7 +105,7 @@ class SENTIMENT_CLASSIFY:
             mode='max',
             save_best_only=True
         )
-        early = EarlyStopping(monitor='val_f1', mode='max', patience=10)
+        early = EarlyStopping(monitor='val_f1', mode='max', patience=5)
         callbacks_list = [checkpoint, early]
 
 
@@ -140,9 +140,9 @@ class SENTIMENT_CLASSIFY:
 
 if __name__ == "__main__":
     sa = SENTIMENT_CLASSIFY()
-    sa.clean_data("/home/hisiter/IT/4_year_1/Intro_ML/lazada_comment_analysis/data/data_all_processed_sorted.csv", is_data_train=False)
-    # sa.training_sarnn(trainable_embedding=True)
-    # sa.predict()
+    # sa.clean_data("/home/hisiter/IT/4_year_1/Intro_ML/lazada_comment_analysis/data/test_287.csv", is_data_train=False)
+    sa.training_sarnn(trainable_embedding=True)
+    sa.predict()
 
 '''
 Result training 
