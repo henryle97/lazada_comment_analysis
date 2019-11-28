@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/embedding/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.extract_feature">
+  <component name="RunManager" selected="Python.main">
     <configuration name="extract_feature" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="sentiment_classification" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,8 +182,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.extract_feature" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.extract_feature" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python.processing_data" />
         <item itemvalue="Python.feature_extract_video" />
@@ -211,7 +213,7 @@
       <workItem from="1574732710181" duration="5277000" />
       <workItem from="1574817693459" duration="7304000" />
       <workItem from="1574908326101" duration="14000" />
-      <workItem from="1574912155746" duration="6015000" />
+      <workItem from="1574912155746" duration="6380000" />
     </task>
     <servers />
   </component>
@@ -237,7 +239,7 @@
     <SUITE FILE_PATH="coverage/sentiment_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1574824741895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/lazada_comment_analysis$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574917411888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sentiment_classification$feature_extract_video.coverage" NAME="feature_extract_video Coverage Results" MODIFIED="1571795490967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../3nd_year_semester2/VCCorp_Intern/Computer_vision/categorize_video" />
-    <SUITE FILE_PATH="coverage/lazada_comment_analysis$main.coverage" NAME="main Coverage Results" MODIFIED="1574917156074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/lazada_comment_analysis$main.coverage" NAME="main Coverage Results" MODIFIED="1574918237334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sentiment_classification$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574823195194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

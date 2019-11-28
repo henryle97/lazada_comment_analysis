@@ -68,6 +68,7 @@ def make_embedding(texts_splited, embedding_path, max_features=DEFAULT_MAX_FEATU
     nb_words = min(max_features, len(word_index))
     embedding_matrix = np.zeros((nb_words + 1, embed_size))
     i = 1
+
     word_map = defaultdict(lambda: nb_words)
     for word in word_index:
         if i >= max_features:

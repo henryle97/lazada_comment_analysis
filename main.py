@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import keras_self_attention
 
 from model_util import model
@@ -47,8 +49,9 @@ class SENTIMENT_CLASSIFY:
             self.embedding_path,
             self.max_features
         )
+
         with open(self.word_map_path, 'wb') as f:
-            pickle.dump(word_map, f, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(dict(word_map), f, protocol=pickle.HIGHEST_PROTOCOL)
         with open(self.embedding_matrix_path, 'wb') as f:
             pickle.dump(embedding_mat, f, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -72,20 +75,6 @@ class SENTIMENT_CLASSIFY:
         labels = labels[:, labels.any(0)] # bỏ đi các cột ko có giá trị khác không nào
 
         return texts_id, labels
-
-
-    def training_ML(self):
-        X_train = np.load(self.features_path, allow_pickle=True)
-        y_train = np.load(self.labels_path)
-        model = LogisticRegression()
-
-        # CROSS VALIDATION
-        score = cross_val_score(model, X_train, y_train, cv=8)
-        print(score)
-
-        # TRAINING
-        model.fit(X_train, y_train)
-        pickle.dump(model, open(self.model_path, 'wb'))
 
     def training_sarnn(self, trainable_embedding=False, use_additive_emb=False):
         # load embedding
