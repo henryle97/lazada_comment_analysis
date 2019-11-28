@@ -1,9 +1,5 @@
 from keras.models import Model
-from keras.layers import \
-    Dense, Embedding, Input, \
-    CuDNNGRU, GRU, LSTM, Bidirectional, CuDNNLSTM, \
-    GlobalMaxPool1D, GlobalAveragePooling1D, Dropout, \
-    Lambda, Concatenate, TimeDistributed
+from keras.layers import Dense, Embedding, Input, LSTM, Bidirectional, CuDNNLSTM,Dropout
 
 from keras_self_attention import SeqSelfAttention, SeqWeightedAttention
 from keras_layer_normalization import LayerNormalization

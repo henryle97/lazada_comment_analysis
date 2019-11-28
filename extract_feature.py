@@ -25,16 +25,16 @@ def preprocessing_comment(text):
     return text
 
 
-def processing_data(csv_path, csv_result_path="train_processed.csv", data_train=True):
+def processing_data(csv_path, csv_result_path="train_processed.csv", is_data_train=True):
     t1 = time.time()
     print("Start processing data ...")
     df = pd.read_csv(csv_path, sep=",", usecols=range(2), names=["stars", "comment"])
-    if data_train == True:
-        df_drop = df.drop_duplicates(keep='first', inplace=False)
-    df_drop["comment"] = df_drop["comment"].map(preprocessing_comment)
-    if data_train == True:
-        df_drop = df_drop[(df_drop["comment"].str.strip() != "") & (df_drop["comment"].str.len() > 1)]
-    df_drop.to_csv(csv_result_path, sep=",", index=False)
+    if is_data_train:
+        df = df.drop_duplicates(keep='first', inplace=False)
+    df["comment"] = df["comment"].map(preprocessing_comment)
+    if is_data_train:
+        df = df[(df["comment"].str.strip() != "") & (df["comment"].str.len() > 1)]
+    df.to_csv(csv_result_path, sep=",", index=False)
     print(f"Done processing data in {time.time()-t1}s")
 
 def tokenize(comments):
@@ -148,6 +148,6 @@ def texts_to_sequences(texts_splited, word_map, max_len=DEFAULT_MAX_LENGTH):
 #
 #
 if __name__ == "__main__":
-    processing_data("data/data_all.csv", "data/data_all_processed.csv")
+    processing_data("data/train.csv", "data/train_processed.csv")
     # preprocessing_comment(
     #     '"em nhận được hàng rồi rất đẹp 😍😍😍')
