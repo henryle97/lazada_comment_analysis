@@ -31,4 +31,4 @@ if __name__ == "__main__":
     csv__res_path = "/home/hisiter/IT/4_year_1/Intro_ML/sentiment_classification/data/data_van_clean.csv"
     # txt2csv("train.txt", "train.csv")
     # test_csv(csv_path)
-    clean_csv(csv_path, csv__res_path)
+    # clean_csv(csv_path, csv__res_path)

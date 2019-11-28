@@ -145,6 +145,6 @@ def texts_to_sequences(texts_splited, word_map, max_len=DEFAULT_MAX_LENGTH):
 #
 #
 if __name__ == "__main__":
-    processing_data("data/train.csv", "data/train_500.csv")
+    processing_data("data/data_hao.csv", "data/data_hao_processed.csv")
     # preprocessing_comment(
     #     '"em nhận được hàng rồi rất đẹp 😍😍😍')

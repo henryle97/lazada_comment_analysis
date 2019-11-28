@@ -13,14 +13,18 @@ from data.utils import read_file
 import os
 from keras.utils import to_categorical
 from keras.models import load_model
-
+from extract_feature import processing_data
 import model_util
 
 class SENTIMENT_CLASSIFY:
     def __init__(self):
-        self.features_path = "data/features_tfidf.npy"
-        self.labels_path = "data/labels_tfidf.npy"
         self.model_path = "models/SARNN-version/models.hdf5"
+        self.batch_size = 50
+        self.epochs = 100
+
+    def clean_data(self, csv_path, csv_result_path):
+        processing_data(csv_path, csv_result_path)
+        return csv_result_path
 
     def create_feature(self, data_path, embedding_path, max_features):
         '''
@@ -97,8 +101,7 @@ class SENTIMENT_CLASSIFY:
         )
         early = EarlyStopping(monitor='val_f1', mode='max', patience=5)
         callbacks_list = [checkpoint, early]
-        batch_size = 50
-        epochs = 100
+
 
         model = SARNN_Keras(
             embeddingMatrix=embedding_mat,
@@ -112,8 +115,8 @@ class SENTIMENT_CLASSIFY:
             texts_id_train, labels_train,
             validation_data=(texts_id_val, labels_val),
             callbacks=callbacks_list,
-            epochs=epochs,
-            batch_size=batch_size
+            epochs=self.epochs,
+            batch_size=self.batch_size
         )
 
     def predict(self, X_test, y_test):
@@ -128,11 +131,11 @@ class SENTIMENT_CLASSIFY:
 if __name__ == "__main__":
     sa = SENTIMENT_CLASSIFY()
     embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val, texts_id_test, labels_test = sa.create_feature(
-        data_path="data/data_hoang_processed.csv", embedding_path="/home/hisiter/IT/4_year_1/Intro_ML/sentiment_classification/data/baomoi.model.bin", max_features=120000
+        data_path="data/data_hoang_processed.csv", embedding_path="data/baomoi.model.bin", max_features=120000
     )
     print(len(list(texts_id_train)))
     print(texts_id_train.shape)
     print(labels_train.shape)
-    # sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
-    #                    trainable=True, use_additive_emb=False)
-    sa.predict(texts_id_test, labels_test)
+    sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
+                       trainable=True, use_additive_emb=False)
+    # sa.predict(texts_id_test, labels_test)
