@@ -9,8 +9,7 @@ from pyvi import ViTokenizer
 import json
 
 DEFAULT_MAX_FEATURES = 12000
-DEFAULT_MAX_LENGTH = 100
-
+DEFAULT_MAX_LENGTH = 80
 
 # PREPROCESSING
 def preprocessing_comment(text):

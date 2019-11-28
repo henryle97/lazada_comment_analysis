@@ -17,7 +17,7 @@ from sklearn.metrics import classification_report
 class SENTIMENT_CLASSIFY:
     def __init__(self):
         self.model_path = "models.hdf5"
-        self.batch_size = 96
+        self.batch_size = 128
         self.epochs = 100
         self.data_train_path = "data/data_all_processed_sorted.csv"
         self.data_test_path = "data/test_287.csv"
@@ -65,7 +65,7 @@ class SENTIMENT_CLASSIFY:
 
         data = read_file(data_path)
         tokenized_texts = tokenize(data['comment'])
-        texts_id = texts_to_sequences(tokenized_texts, word_map)
+        texts_id = texts_to_sequences(tokenized_texts, word_map, max_len=80)
 
         labels = data['stars'].tolist()
         labels = to_categorical(labels)  #return encode cho 0->numclass
@@ -86,7 +86,7 @@ class SENTIMENT_CLASSIFY:
         texts_id, labels = self.create_feature(data_path=self.data_train_path)
 
         texts_id_train, texts_id_val, labels_train, labels_val = train_test_split(
-            texts_id, labels, test_size=0.1)
+            texts_id, labels, test_size=0.1, random_state=1997, shuffle=True)
         print('Number of train data: {}'.format(len(list(texts_id))))
 
         model_path = './models/{}-version'.format(self.model_name)
@@ -105,7 +105,7 @@ class SENTIMENT_CLASSIFY:
             mode='max',
             save_best_only=True
         )
-        early = EarlyStopping(monitor='val_f1', mode='max', patience=5)
+        early = EarlyStopping(monitor='val_f1', mode='max', patience=10)
         callbacks_list = [checkpoint, early]
 
 
@@ -140,6 +140,16 @@ class SENTIMENT_CLASSIFY:
 
 if __name__ == "__main__":
     sa = SENTIMENT_CLASSIFY()
-    # sa.clean_data("data/train.csv", is_data_train=False)
-    sa.training_sarnn()
+    sa.clean_data("/home/hisiter/IT/4_year_1/Intro_ML/lazada_comment_analysis/data/data_all_processed_sorted.csv", is_data_train=False)
+    # sa.training_sarnn(trainable_embedding=True)
     # sa.predict()
+
+'''
+Result training 
+- (1) : train_able = False 
++ f1 = 0.87 , val_f1 : 0.57864
++ test accuracy = 0.68
+
+
+- (2): train_able = True, patient = 8
+'''

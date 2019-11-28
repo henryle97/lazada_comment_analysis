@@ -6,7 +6,7 @@ from keras_layer_normalization import LayerNormalization
 from model_util.net_component import AdditiveLayer, AttLayer
 from model_util.utils import f1
 from sklearn.svm import SVC
-
+from model_util.utils import focal_loss
 def SVC_Classification():
     model = SVC(kernel='rbf', C=1, gamma=1)
     return model
@@ -44,12 +44,13 @@ def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen
 
     x = Bidirectional(rnn_type(128, return_sequences=True))(x)
     x = SeqWeightedAttention()(x)
-    x = Dropout(0.5)(x)
+    x = Dropout(0.6)(x)
 
-    x = Dense(64, activation='relu')(x)
+    x = Dense(32, activation='relu')(x)
     x = Dropout(0.5)(x)
     x = Dense(5, activation='softmax')(x)
 
     model = Model(inputs=input, outputs=x)
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', f1])
+    model.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['accuracy', f1])
+    model.summary()
     return model

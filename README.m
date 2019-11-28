@@ -10,3 +10,4 @@ Run main.py
 TODO:
 1. Thêm dấu cho từ
 2. Training
+3. Use focal_loss loss cho imbalanced dataset

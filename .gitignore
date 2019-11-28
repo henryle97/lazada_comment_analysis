@@ -1,3 +1,4 @@
 data/baomoi*
 models
 embedding/baomoi.model.bin
+data_backup
