@@ -35,6 +35,7 @@ class SENTIMENT_CLASSIFY:
         return result_namefile
 
     def create_embedding(self):
+        if not os.path.exists("embedding")
         train_data = read_file(self.data_train_path)
         train_tokenized_texts = tokenize(train_data['comment'])
         test_data = read_file(self.data_test_path)

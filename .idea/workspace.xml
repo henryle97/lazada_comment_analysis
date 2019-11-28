@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/.~lock.data-1.csv#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/.~lock.data_hao.csv#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data_hao_processed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_hao_processed.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/replace_dict.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/replace_dict.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_feature.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_util/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_util/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +212,7 @@
       <workItem from="1574732710181" duration="5277000" />
       <workItem from="1574817693459" duration="7304000" />
       <workItem from="1574908326101" duration="14000" />
-      <workItem from="1574912155746" duration="5495000" />
+      <workItem from="1574912155746" duration="5584000" />
     </task>
     <servers />
   </component>
