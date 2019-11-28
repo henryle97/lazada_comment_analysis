@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sentiment_classification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sentiment_classification.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SARNN-version/models.hdf5" beforeDir="false" afterPath="$PROJECT_DIR$/models/SARNN-version/models.hdf5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_util/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_util/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +49,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -211,6 +212,8 @@
       <workItem from="1574643408338" duration="6949000" />
       <workItem from="1574732710181" duration="5277000" />
       <workItem from="1574817693459" duration="7304000" />
+      <workItem from="1574908326101" duration="14000" />
+      <workItem from="1574912155746" duration="53000" />
     </task>
     <servers />
   </component>

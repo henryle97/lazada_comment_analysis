@@ -1,10 +1,6 @@
 from collections import defaultdict
-from idlelib import replace
-
 from gensim.models import KeyedVectors
-from pyvi import ViTokenizer
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 import time
 import re

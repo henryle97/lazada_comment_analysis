@@ -52,7 +52,7 @@ def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen
 
     x = Dense(64, activation='relu')(x)
     x = Dropout(0.5)(x)
-    x = Dense(5, activation='sigmoid')(x)
+    x = Dense(5, activation='softmax')(x)
 
     model = Model(inputs=input, outputs=x)
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', f1])
