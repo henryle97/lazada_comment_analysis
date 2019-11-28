@@ -65,7 +65,7 @@ class SENTIMENT_CLASSIFY:
 
         data = read_file(data_path)
         tokenized_texts = tokenize(data['comment'])
-        texts_id = texts_to_sequences(tokenized_texts, word_map, max_len=80)
+        texts_id = texts_to_sequences(tokenized_texts, word_map)
 
         labels = data['stars'].tolist()
         labels = to_categorical(labels)  #return encode cho 0->numclass
