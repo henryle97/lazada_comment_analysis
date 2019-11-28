@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96fd1688-a524-421b-a960-e21306e880ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Note.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.m" beforeDir="false" afterPath="$PROJECT_DIR$/README.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/features_tfidf.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/labels_tfidf.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/.~lock.data-1.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/.~lock.data_hao.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_hao_processed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_hao_processed.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/replace_dict.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/replace_dict.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extract_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_feature.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_util/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_util/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +58,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/utils_model" />
     </key>
@@ -219,7 +219,7 @@
       <workItem from="1574732710181" duration="5277000" />
       <workItem from="1574817693459" duration="7304000" />
       <workItem from="1574908326101" duration="14000" />
-      <workItem from="1574912155746" duration="2871000" />
+      <workItem from="1574912155746" duration="5495000" />
     </task>
     <servers />
   </component>
@@ -243,8 +243,9 @@
     <SUITE FILE_PATH="coverage/sentiment_classification$processing_data.coverage" NAME="processing_data Coverage Results" MODIFIED="1571964222071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils_data" />
     <SUITE FILE_PATH="coverage/sentiment_classification$utils.coverage" NAME="utils Coverage Results" MODIFIED="1574733611739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/sentiment_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1574824741895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/lazada_comment_analysis$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574915066013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/lazada_comment_analysis$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574917411888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sentiment_classification$feature_extract_video.coverage" NAME="feature_extract_video Coverage Results" MODIFIED="1571795490967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../3nd_year_semester2/VCCorp_Intern/Computer_vision/categorize_video" />
+    <SUITE FILE_PATH="coverage/lazada_comment_analysis$main.coverage" NAME="main Coverage Results" MODIFIED="1574917156074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sentiment_classification$extract_feature.coverage" NAME="extract_feature Coverage Results" MODIFIED="1574823195194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

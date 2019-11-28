@@ -25,13 +25,15 @@ def preprocessing_comment(text):
     return text
 
 
-def processing_data(csv_path, csv_result_path="train_processed.csv"):
+def processing_data(csv_path, csv_result_path="train_processed.csv", data_train=True):
     t1 = time.time()
     print("Start processing data ...")
     df = pd.read_csv(csv_path, sep=",", usecols=range(2), names=["stars", "comment"])
-    df_drop = df.drop_duplicates(keep='first', inplace=False)
+    if data_train == True:
+        df_drop = df.drop_duplicates(keep='first', inplace=False)
     df_drop["comment"] = df_drop["comment"].map(preprocessing_comment)
-    df_drop = df_drop[(df_drop["comment"].str.strip() != "") & (df_drop["comment"].str.len() > 3)]
+    if data_train == True:
+        df_drop = df_drop[(df_drop["comment"].str.strip() != "") & (df_drop["comment"].str.len() > 1)]
     df_drop.to_csv(csv_result_path, sep=",", index=False)
     print(f"Done processing data in {time.time()-t1}s")
 
@@ -145,6 +147,6 @@ def texts_to_sequences(texts_splited, word_map, max_len=DEFAULT_MAX_LENGTH):
 #
 #
 if __name__ == "__main__":
-    processing_data("data/data_hao.csv", "data/data_hao_processed.csv")
+    processing_data("data/data_all.csv", "data/data_all_processed.csv")
     # preprocessing_comment(
     #     '"em nhận được hàng rồi rất đẹp 😍😍😍')

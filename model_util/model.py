@@ -15,7 +15,7 @@ def SVC_Classification():
     model = SVC(kernel='rbf', C=1, gamma=1)
     return model
 
-def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen=100,use_fasttext=False, trainable=True, use_additive_emb=False, rnn_type=LSTM, use_gpu=False):
+def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen=100, trainable_embedding=True, use_additive_emb=False, rnn_type=LSTM, use_gpu=False):
     '''
     SARNN - Self-Attention RNN
     :param embeddingMatrix:
@@ -33,7 +33,7 @@ def SARNN_Keras(embeddingMatrix=None, embed_size=400, max_features=20000, maxlen
         rnn_type = CuDNNLSTM
 
     input = Input(shape=(maxlen, ))
-    x = Embedding(input_dim=max_features, output_dim=embed_size, weights=[embeddingMatrix], trainable=trainable)(input)
+    x = Embedding(input_dim=max_features, output_dim=embed_size, weights=[embeddingMatrix], trainable=trainable_embedding)(input)
 
     if use_additive_emb:
         x = AdditiveLayer()(x)

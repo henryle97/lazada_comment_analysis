@@ -21,44 +21,56 @@ class SENTIMENT_CLASSIFY:
         self.model_path = "models/SARNN-version/models.hdf5"
         self.batch_size = 50
         self.epochs = 100
+        self.data_train_path = "data/data_hao_processed.csv"
+        self.data_test_path = "data/data_hoang_processed.csv"
+        self.embedding_path = "embedding/baomoi.model.bin"
+        self.word_map_path = "embedding/wordmap.pkl"
+        self.embedding_matrix_path = "embedding/embeding_matrix.pkl"
+        self.max_features = 120000
+        self.model_name = "SARNN"
 
-    def clean_data(self, csv_path, csv_result_path):
-        processing_data(csv_path, csv_result_path)
-        return csv_result_path
+    def clean_data(self, csv_path, data_train):
+        result_namefile = os.path.basename(csv_path).split(".")[0] + "_processed.csv"
+        processing_data(csv_path, result_namefile, data_train)
+        return result_namefile
 
-    def create_feature(self, data_path, embedding_path, max_features):
+    def create_embedding(self):
+        train_data = read_file(self.data_train_path)
+        train_tokenized_texts = tokenize(train_data['comment'])
+        test_data = read_file(self.data_test_path)
+        test_tokenized_texts = tokenize(test_data['comment'])
+
+        embed_size, word_map, embedding_mat = make_embedding(
+            list(train_tokenized_texts) + list(test_tokenized_texts),
+            self.embedding_path,
+            self.max_features
+        )
+        with open(self.word_map_path, 'wb') as f:
+            pickle.dump(word_map, f, protocol=pickle.HIGHEST_PROTOCOL)
+        with open(self.embedding_matrix_path, 'wb') as f:
+            pickle.dump(embedding_mat, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def create_feature(self, data_path):
         '''
 
         :param data_path: file txt/csv chứa comment và label
         :return: sequence
         '''
-        train_data = read_file(data_path)
-        train_tokenized_texts = tokenize(train_data['comment'])
+        # load word_map
+        if not os.path.exists(self.word_map_path):
+            self.create_embedding()
+        word_map = pickle.load(open(self.word_map_path, 'rb'))
 
-        labels = train_data['stars'].tolist()
+        data = read_file(data_path)
+        tokenized_texts = tokenize(data['comment'])
+        texts_id = texts_to_sequences(tokenized_texts, word_map)
+
+        labels = data['stars'].tolist()
         labels = to_categorical(labels)  #return encode cho 0->numclass
-        labels = labels[:,labels.any(0)] # bỏ đi các cột ko có giá trị khác không nào
+        labels = labels[:, labels.any(0)] # bỏ đi các cột ko có giá trị khác không nào
 
-        test_data = read_file("data/train_500.csv")
-        test_tokenized_texts = tokenize(test_data['comment'])
-        labels_test = test_data['stars'].tolist()
-        labels_test = to_categorical(labels_test)  # return encode cho 0->numclass
-        labels_test = labels_test[:, labels_test.any(0)]  # bỏ đi các cột ko có giá trị khác không nào
+        return texts_id, labels
 
-        train_tokenized_texts, val_tokenized_texts, labels_train, labels_val = train_test_split(
-            train_tokenized_texts, labels, test_size=0.1, random_state=1997
-        )
-
-        # Cần tạo embedding size cho cả train và test
-        embed_size, word_map, embedding_mat = make_embedding(
-            list(train_tokenized_texts) + list(val_tokenized_texts) + list(test_tokenized_texts),
-            embedding_path,
-            max_features
-        )
-        texts_id_train = texts_to_sequences(train_tokenized_texts, word_map)
-        texts_id_val = texts_to_sequences(val_tokenized_texts, word_map)
-        texts_id_test = texts_to_sequences(test_tokenized_texts, word_map)
-        return embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val, texts_id_test, labels_test
 
     def training_ML(self):
         X_train = np.load(self.features_path, allow_pickle=True)
@@ -73,17 +85,21 @@ class SENTIMENT_CLASSIFY:
         model.fit(X_train, y_train)
         pickle.dump(model, open(self.model_path, 'wb'))
 
-    def training_sarnn(self, embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
-                       trainable=False, use_additive_emb=True):
+    def training_sarnn(self, trainable_embedding=False, use_additive_emb=False):
+        # load embedding
+        if not os.path.exists(self.embedding_matrix_path):
+            self.create_embedding()
+        embedding_mat = pickle.load(open(self.embedding_matrix_path, 'rb'))
+        embed_size = embedding_mat.shape[1]
+        print(f"embed_size = {embed_size}")
+        # load data train
+        texts_id, labels = self.create_feature(data_path=self.data_train_path)
 
-        model_name = "SARNN"
-        print('Number of train data: {}'.format(len(labels_train.tolist() + labels_val.tolist())))
+        texts_id_train, texts_id_val, labels_train, labels_val = train_test_split(
+            texts_id, labels, test_size=0.1)
+        print('Number of train data: {}'.format(len(list(texts_id))))
 
-        # texts_id_train, texts_id_val, labels_train, labels_val = train_test_split(
-        #     texts_id, labels, test_size=0.05)
-
-        model_path = './models/{}-version'.format(model_name)
-
+        model_path = './models/{}-version'.format(self.model_name)
         try:
             os.mkdir('./models')
         except:
@@ -107,7 +123,7 @@ class SENTIMENT_CLASSIFY:
             embeddingMatrix=embedding_mat,
             embed_size=embed_size,
             max_features=embedding_mat.shape[0],
-            trainable=trainable,
+            trainable_embedding=trainable_embedding,
             use_additive_emb=use_additive_emb
         )
 
@@ -119,8 +135,9 @@ class SENTIMENT_CLASSIFY:
             batch_size=self.batch_size
         )
 
-    def predict(self, X_test, y_test):
+    def predict(self):
         # load model_util
+        X_test, y_test = self.create_feature()
         model = load_model(self.model_path, custom_objects={'SeqSelfAttention' : keras_self_attention.SeqSelfAttention,
                                                             'SeqWeightedAttention':keras_self_attention.SeqWeightedAttention,'f1': model_util.utils.f1})
 
@@ -130,12 +147,5 @@ class SENTIMENT_CLASSIFY:
 
 if __name__ == "__main__":
     sa = SENTIMENT_CLASSIFY()
-    embed_size, word_map, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val, texts_id_test, labels_test = sa.create_feature(
-        data_path="data/data_hoang_processed.csv", embedding_path="data/baomoi.model.bin", max_features=120000
-    )
-    print(len(list(texts_id_train)))
-    print(texts_id_train.shape)
-    print(labels_train.shape)
-    sa.training_sarnn( embed_size, embedding_mat, texts_id_train, texts_id_val, labels_train, labels_val,
-                       trainable=True, use_additive_emb=False)
+    sa.training_sarnn()
     # sa.predict(texts_id_test, labels_test)
